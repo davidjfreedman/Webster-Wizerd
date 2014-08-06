@@ -59,8 +59,8 @@ WebsterWizerd.prototype.showResults = function(word) {
         function(definitionData, dictionaryTemplateResults, thesaurusData, synonymTemplateResults) { // is passed to here
 
             var definitionEntry = definitionData.entry_list.entry[0];
-            var thesaurusEntry = _.filter(thesaurusData.entry_list.entry, function(entry) {
-                return entry.fl['#text'] === definitionEntry.fl['#text'];
+            var thesaurusEntries = _.filter(thesaurusData.entry_list.entry, function(entry) {
+                return entry.fl['#text'] === definitionEntry.fl['#text']; //this will always return an array, unless there is no definition, in which case it will just return an undefined
             })
 
             // console.log(JSON.stringify(thesaurusEntry));
@@ -73,7 +73,7 @@ WebsterWizerd.prototype.showResults = function(word) {
                 templatingFunctionDictionary(definitionEntry)
             );
 
-            if (thesaurusEntry.length) {
+            if (thesaurusEntries.length) {
                 $('.thesaurus-destination').html(
                     templatingFunctionThesaurus(thesaurusEntry[0])
                 );
@@ -134,7 +134,7 @@ WebsterWizerd.prototype.handleEvents = function() {
 window.onload = app;
 
 function app() {
-    var thesaurus_key = '070ba04d-4a8a-4e5b-be08-218c72522083';
-    var dictionary_key = '8af24765-6a55-49b7-bec0-e84f6dc7a277';
+    var thesaurus_key = 'f68831fb-bfd7-4aa6-8f2f-33783742a36e';
+    var dictionary_key = '884db34b-db2a-441b-94f0-be9c862c4ccd';
     wizerd = new WebsterWizerd(dictionary_key, thesaurus_key);
 }
