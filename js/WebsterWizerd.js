@@ -54,6 +54,7 @@ WebsterWizerd.prototype.getThesaurus = function(word) {
 // - loads templates and data for dictionary and thesaurus APIs
 // - places resulting elements on the DOM
 WebsterWizerd.prototype.showResults = function(word) {
+    var self = this;
     //- $.when is a promise statement that collects the data as promise objects
     // - promise objects don't return in the same order
     // - If a promise object doesn't resolve, $.then() doesn't run
@@ -89,6 +90,7 @@ WebsterWizerd.prototype.showResults = function(word) {
 
             // find .dictionary-destination in HTML and use dictionary template
             // and data to write presentation to DOM
+            $('.word-destination').text(word);
             $('.dictionary-destination').html(
                 templatingFunctionDictionary(definitionEntry)
             );
